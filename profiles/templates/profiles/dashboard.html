@@ -1,0 +1,34 @@
+<!-- profiles/templates/profiles/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ profile.name }}</h1>
+    <h2>Profile</h2>
+    <p>Branch: {{ profile.branch }}</p>
+    <p>WhatsApp: {{ profile.whatsapp_number }}</p>
+    <p>GitHub: <a href="{{ profile.github_link }}">{{ profile.github_link }}</a></p>
+
+    {% if leetcode_data %}
+    <h2>LeetCode Statistics</h2>
+    <p>Username: {{ leetcode_data.username }}</p>
+    <ul>
+        {% for stat in leetcode_data.submitStats.acSubmissionNum %}
+        <li>{{ stat.difficulty }}: {{ stat.count }} ({{ stat.submissions }} submissions)</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li>{{ project.title }}: {{ project.description }} <a href="{{ project.link }}">{{ project.link }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
